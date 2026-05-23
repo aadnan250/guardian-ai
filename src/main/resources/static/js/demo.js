@@ -98,6 +98,9 @@ const fightFill = document.querySelector("#fightFill");
 const fightStatus = document.querySelector("#fightStatus");
 const intrusionScreen = document.querySelector("#intrusionScreen");
 const intrusionCode = document.querySelector("#intrusionCode");
+const attackVectorName = document.querySelector("#attackVectorName");
+const attackVectorSource = document.querySelector("#attackVectorSource");
+const attackVectorSignal = document.querySelector("#attackVectorSignal");
 const streams = [
     document.querySelector("#systemStream"),
     document.querySelector("#memoryStream"),
@@ -232,6 +235,9 @@ function setStage(threat) {
     startTerminalChaos();
     updateFightBar(threat.containment, `Countering ${threat.name}`);
     renderIntrusionCode(threat);
+    attackVectorName.textContent = threat.name;
+    attackVectorSource.textContent = `source: ${threat.source}`;
+    attackVectorSignal.textContent = `signal: ${threat.signal}`;
 }
 
 function renderThreatCard(threat, status) {
@@ -394,6 +400,9 @@ startButton.addEventListener("click", () => {
     threatList.innerHTML = "";
     streams.forEach(stream => stream.innerHTML = "");
     intrusionScreen.classList.remove("visible", "denied-pulse");
+    attackVectorName.textContent = "Awaiting simulated intrusion";
+    attackVectorSource.textContent = "source: pending";
+    attackVectorSignal.textContent = "signal: none";
     responseConsole.innerHTML = "";
     startButton.disabled = true;
     startButton.textContent = "Simulation Running";

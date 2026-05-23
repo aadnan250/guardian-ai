@@ -511,11 +511,11 @@ form button[type="submit"] {
     border-radius: 8px;
     box-shadow: inset 0 0 45px rgba(34, 197, 94, .08), 0 0 35px rgba(0, 0, 0, .35);
     display: none;
-    inset: 12px;
+    inset: 8px;
     overflow: hidden;
     padding: 24px;
     position: absolute;
-    z-index: 4;
+    z-index: 1;
 }
 
 .intrusion-screen.visible {
@@ -527,7 +527,7 @@ form button[type="submit"] {
     color: #74ff75;
     font: .85rem/1.65 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     margin: 0;
-    max-width: 64%;
+    max-width: 58%;
     text-shadow: 0 0 10px rgba(116, 255, 117, .45);
     white-space: pre-wrap;
 }
@@ -657,21 +657,24 @@ form button[type="submit"] {
     text-transform: uppercase;
 }
 
-.threat-orbit {
-    animation: threatFloat 3s ease-in-out infinite;
-    filter: drop-shadow(0 0 18px rgba(248, 113, 113, .5));
-    height: 76px;
-    width: 76px;
+.code-side-panel {
+    align-content: start;
+    background: rgba(3, 7, 18, .88);
+    border: 1px solid rgba(34, 197, 94, .25);
+    border-radius: 8px;
+    box-shadow: inset 0 0 24px rgba(34, 197, 94, .06);
+    min-height: 220px;
+    padding: 16px;
 }
 
-.orbit-b {
-    animation-delay: .5s;
-    margin-left: 70px;
+.code-side-panel strong {
+    color: #bbf7d0;
+    font: 900 .95rem ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
-.orbit-c {
-    animation-delay: 1s;
-    margin-left: 20px;
+.code-side-panel small {
+    color: #86efac;
+    font: .76rem/1.4 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
 }
 
 .shield-core {
@@ -680,7 +683,7 @@ form button[type="submit"] {
     height: 260px;
     justify-items: center;
     position: relative;
-    z-index: 3;
+    z-index: 5;
 }
 
 .shield-ring {
@@ -728,10 +731,10 @@ form button[type="submit"] {
 }
 
 .asset-card {
-    background: #102333;
-    border: 1px solid #2a465b;
+    background: rgba(7, 16, 24, .8);
+    border: 1px solid rgba(45, 212, 191, .28);
     border-radius: 8px;
-    color: #dbeafe;
+    color: #ccfbf1;
     font-weight: 800;
     padding: 16px;
 }
@@ -1096,16 +1099,6 @@ body.under-attack .shield-ring {
 
 body.under-attack .shield-center {
     border-color: #f87171;
-}
-
-@keyframes threatFloat {
-    0%,
-    100% {
-        transform: translateY(0) rotate(-2deg);
-    }
-    50% {
-        transform: translateY(-14px) rotate(3deg);
-    }
 }
 
 @keyframes shieldPulse {

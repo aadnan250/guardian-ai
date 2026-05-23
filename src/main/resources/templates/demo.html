@@ -78,11 +78,11 @@
                     <div class="access-denied">ACCESS DENIED</div>
                     <div class="video-progress"><span></span></div>
                 </div>
-                <div class="internet-zone">
-                    <span>External traffic</span>
-                    <img class="threat-orbit orbit-a" th:src="@{/img/threat-spoofing.svg}" alt="Simulated spoofing threat">
-                    <img class="threat-orbit orbit-b" th:src="@{/img/threat-trojan.svg}" alt="Simulated trojan threat">
-                    <img class="threat-orbit orbit-c" th:src="@{/img/threat-ransomware.svg}" alt="Simulated ransomware threat">
+                <div class="internet-zone code-side-panel">
+                    <span>Attack Vector</span>
+                    <strong id="attackVectorName">Awaiting simulated intrusion</strong>
+                    <small id="attackVectorSource">source: pending</small>
+                    <small id="attackVectorSignal">signal: none</small>
                 </div>
                 <div class="shield-core">
                     <div class="shield-ring"></div>
@@ -92,11 +92,11 @@
                         <span id="coreStatus">Monitoring</span>
                     </div>
                 </div>
-                <div class="asset-zone">
-                    <span>Protected assets</span>
-                    <div class="asset-card">Identity</div>
-                    <div class="asset-card">Endpoints</div>
-                    <div class="asset-card">Server Logs</div>
+                <div class="asset-zone code-side-panel">
+                    <span>AI Defense Stack</span>
+                    <div class="asset-card">Behavior Engine</div>
+                    <div class="asset-card">Memory Guard</div>
+                    <div class="asset-card">Network Shield</div>
                 </div>
             </div>
 
