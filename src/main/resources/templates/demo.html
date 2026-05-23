@@ -54,6 +54,16 @@
 
     <section class="arena-grid">
         <article class="arena-panel battlefield">
+            <div class="defense-video-layer">
+                <iframe
+                        src="https://www.youtube.com/embed/pF-3S-HTJSg?autoplay=1&mute=1&controls=0&loop=1&playlist=pF-3S-HTJSg&modestbranding=1&rel=0"
+                        title="Defense mode visual reference"
+                        allow="autoplay; encrypted-media; picture-in-picture"
+                        referrerpolicy="strict-origin-when-cross-origin">
+                </iframe>
+                <div class="video-shade"></div>
+            </div>
+
             <div class="battle-header">
                 <div>
                     <span class="status-dot"></span>
@@ -99,6 +109,17 @@
                 <span class="badge critical">Simulation Ready</span>
                 <h2>Waiting for attack traffic</h2>
                 <p>Press Start Simulation to launch a safe demo sequence.</p>
+            </div>
+
+            <div class="ai-fight-bar" id="aiFightBar">
+                <div class="fight-label">
+                    <span>GuardianAI Countermeasure Engine</span>
+                    <strong id="fightPercent">0%</strong>
+                </div>
+                <div class="fight-track">
+                    <span id="fightFill"></span>
+                </div>
+                <p id="fightStatus">Standing by for defensive response.</p>
             </div>
 
             <div class="attack-lanes" aria-hidden="true">

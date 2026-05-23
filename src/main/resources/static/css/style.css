@@ -444,6 +444,34 @@ form button[type="submit"] {
     position: relative;
 }
 
+.defense-video-layer {
+    border-radius: 8px;
+    inset: 56px 20px 188px 20px;
+    opacity: .22;
+    overflow: hidden;
+    pointer-events: none;
+    position: absolute;
+    z-index: 0;
+}
+
+.defense-video-layer iframe {
+    border: 0;
+    height: 120%;
+    left: 50%;
+    position: absolute;
+    top: 50%;
+    transform: translate(-50%, -50%) scale(1.08);
+    width: 120%;
+}
+
+.video-shade {
+    background:
+            linear-gradient(90deg, rgba(7, 16, 24, .94), rgba(7, 16, 24, .32), rgba(7, 16, 24, .94)),
+            radial-gradient(circle at center, transparent, rgba(7, 16, 24, .76));
+    inset: 0;
+    position: absolute;
+}
+
 .battle-header {
     align-items: center;
     display: flex;
@@ -651,6 +679,65 @@ form button[type="submit"] {
     padding: 18px;
     position: relative;
     z-index: 4;
+}
+
+.ai-fight-bar {
+    background: rgba(3, 7, 18, .92);
+    border: 1px solid #5eead4;
+    border-radius: 8px;
+    box-shadow: 0 0 44px rgba(45, 212, 191, .3);
+    display: none;
+    margin-top: 12px;
+    padding: 15px;
+    position: relative;
+    z-index: 5;
+}
+
+.ai-fight-bar.visible {
+    animation: fightBarIn .35s ease-out;
+    display: block;
+}
+
+.fight-label {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.fight-label span {
+    color: #ccfbf1;
+    font-size: .82rem;
+    font-weight: 900;
+    text-transform: uppercase;
+}
+
+.fight-label strong {
+    color: #5eead4;
+    font-size: 1.25rem;
+}
+
+.fight-track {
+    background: #0f1f2b;
+    border: 1px solid #28465a;
+    border-radius: 999px;
+    height: 15px;
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+.fight-track span {
+    background: linear-gradient(90deg, #14b8a6, #22c55e, #facc15);
+    box-shadow: 0 0 22px rgba(45, 212, 191, .55);
+    display: block;
+    height: 100%;
+    transition: width .7s ease;
+    width: 0;
+}
+
+.ai-fight-bar p {
+    color: #b9c7d5;
+    margin: 10px 0 0;
 }
 
 .active-threat h2 {
@@ -932,6 +1019,10 @@ body[data-threat-level="critical"] .breach-banner strong {
     color: #fecaca;
 }
 
+body.under-attack .defense-video-layer {
+    opacity: .38;
+}
+
 body.under-attack .shield-ring {
     border-color: #ef4444;
     box-shadow: 0 0 55px rgba(239, 68, 68, .75), inset 0 0 40px rgba(239, 68, 68, .2);
@@ -1071,6 +1162,17 @@ body.under-attack .shield-center {
     to {
         opacity: 1;
         transform: scale(1);
+    }
+}
+
+@keyframes fightBarIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
     }
 }
 

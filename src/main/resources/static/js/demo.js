@@ -92,6 +92,10 @@ const threatList = document.querySelector("#threatList");
 const containmentList = document.querySelector("#containmentList");
 const finalOverlay = document.querySelector("#finalOverlay");
 const processTable = document.querySelector("#processTable");
+const aiFightBar = document.querySelector("#aiFightBar");
+const fightPercent = document.querySelector("#fightPercent");
+const fightFill = document.querySelector("#fightFill");
+const fightStatus = document.querySelector("#fightStatus");
 const streams = [
     document.querySelector("#systemStream"),
     document.querySelector("#memoryStream"),
@@ -194,6 +198,7 @@ function setStage(threat) {
     document.body.dataset.threatLevel = threat.level.toLowerCase();
     streamDelay = threat.level === "SEVERE" ? 45 : threat.level === "CRITICAL" ? 70 : threat.level === "HIGH" ? 110 : 160;
     startTerminalChaos();
+    updateFightBar(threat.containment, `Countering ${threat.name}`);
 }
 
 function renderThreatCard(threat, status) {
@@ -215,6 +220,13 @@ function updateContainment(threat) {
         <li class="complete">${threat.action}</li>
         <li class="complete">Created SOC analyst summary</li>
     `;
+}
+
+function updateFightBar(percent, status) {
+    aiFightBar.classList.add("visible");
+    fightPercent.textContent = `${percent}%`;
+    fightFill.style.width = `${percent}%`;
+    fightStatus.textContent = status;
 }
 
 function updateProcesses(threat) {
@@ -305,6 +317,7 @@ function runThreat(threat, index) {
             document.body.classList.remove("under-attack");
             updateContainment(threat);
             renderThreatCard(threat, "Contained");
+            updateFightBar(threat.containment, `Containment action complete: ${threat.action}`);
             playPulse(420, 0.25);
         }, 1900);
 
@@ -315,6 +328,7 @@ function runThreat(threat, index) {
                 threatLevel.textContent = "SECURE";
                 aiConfidence.textContent = "99%";
                 containmentScore.textContent = "98%";
+                updateFightBar(98, "Adaptive defense successful. Threat isolated.");
                 activeThreat.innerHTML = `
                     <span class="badge low">Demo Complete</span>
                     <h2>All simulated threats contained</h2>
@@ -342,6 +356,7 @@ startButton.addEventListener("click", () => {
     threatLevel.textContent = "LOW";
     aiConfidence.textContent = "0%";
     containmentScore.textContent = "0%";
+    updateFightBar(0, "Defense mode initializing.");
     threatCounter.textContent = "0 threats contained";
     threatList.innerHTML = "";
     streams.forEach(stream => stream.innerHTML = "");
