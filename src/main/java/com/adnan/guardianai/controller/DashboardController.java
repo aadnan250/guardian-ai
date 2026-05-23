@@ -31,4 +31,9 @@ public class DashboardController {
         model.addAttribute("recentIncidents", incidentService.findRecent());
         return "dashboard";
     }
+
+    @GetMapping("/demo")
+    public String defenseDemo() {
+        return "demo";
+    }
 }

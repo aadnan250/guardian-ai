@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Live Defense Demo | GuardianAI</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="demo-body">
+<header class="topbar demo-topbar">
+    <a class="brand" th:href="@{/dashboard}">GuardianAI</a>
+    <nav>
+        <a th:href="@{/dashboard}">Dashboard</a>
+        <a th:href="@{/logs/upload}">Upload Logs</a>
+        <a th:href="@{/demo}">Live Demo</a>
+        <form th:action="@{/logout}" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+            <button class="link-button" type="submit">Logout</button>
+        </form>
+    </nav>
+</header>
+
+<main class="demo-page">
+    <section class="demo-hero">
+        <div>
+            <p class="eyebrow">Live defense simulation</p>
+            <h1>GuardianAI Threat Arena</h1>
+            <p class="muted">A safe visual demo of simulated cyberattacks being detected, scored, contained, and reported.</p>
+        </div>
+        <div class="demo-controls">
+            <button id="startDemo" type="button">Start Simulation</button>
+            <button id="audioToggle" class="secondary-button" type="button">Audio On</button>
+        </div>
+    </section>
+
+    <section class="arena-grid">
+        <article class="arena-panel battlefield">
+            <div class="battle-header">
+                <div>
+                    <span class="status-dot"></span>
+                    <strong>Active defense mode</strong>
+                </div>
+                <span id="threatCounter">0 threats contained</span>
+            </div>
+
+            <div class="battlefield-map">
+                <div class="internet-zone">
+                    <span>External traffic</span>
+                    <img class="threat-orbit orbit-a" th:src="@{/img/threat-spoofing.svg}" alt="Simulated spoofing threat">
+                    <img class="threat-orbit orbit-b" th:src="@{/img/threat-trojan.svg}" alt="Simulated trojan threat">
+                    <img class="threat-orbit orbit-c" th:src="@{/img/threat-ransomware.svg}" alt="Simulated ransomware threat">
+                </div>
+                <div class="shield-core">
+                    <div class="shield-ring"></div>
+                    <div class="defense-sweep"></div>
+                    <div class="shield-center">
+                        <strong>GuardianAI</strong>
+                        <span id="coreStatus">Monitoring</span>
+                    </div>
+                </div>
+                <div class="asset-zone">
+                    <span>Protected assets</span>
+                    <div class="asset-card">Identity</div>
+                    <div class="asset-card">Endpoints</div>
+                    <div class="asset-card">Server Logs</div>
+                </div>
+            </div>
+
+            <div id="activeThreat" class="active-threat">
+                <span class="badge critical">Simulation Ready</span>
+                <h2>Waiting for attack traffic</h2>
+                <p>Press Start Simulation to launch a safe demo sequence.</p>
+            </div>
+
+            <div class="attack-lanes" aria-hidden="true">
+                <span class="attack-beam beam-one"></span>
+                <span class="attack-beam beam-two"></span>
+                <span class="attack-beam beam-three"></span>
+            </div>
+        </article>
+
+        <aside class="arena-panel response-panel">
+            <h2>AI Response Console</h2>
+            <div class="console-screen" id="responseConsole">
+                <p>> GuardianAI initialized.</p>
+                <p>> Defensive mode enabled.</p>
+                <p>> Awaiting simulated telemetry.</p>
+            </div>
+        </aside>
+    </section>
+
+    <section class="demo-columns">
+        <article class="arena-panel">
+            <h2>Threat Queue</h2>
+            <div class="threat-list" id="threatList"></div>
+        </article>
+
+        <article class="arena-panel">
+            <h2>Containment Actions</h2>
+            <ul class="containment-list" id="containmentList">
+                <li>Ready to isolate affected host</li>
+                <li>Ready to block suspicious source</li>
+                <li>Ready to reset impacted account</li>
+                <li>Ready to generate incident report</li>
+            </ul>
+        </article>
+    </section>
+</main>
+
+<script th:src="@{/js/demo.js}"></script>
+</body>
+</html>

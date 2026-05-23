@@ -5,4 +5,5 @@ target/
 *.log
 !sample-logs/*.log
 uploads/
+data/
 hs_err_pid*

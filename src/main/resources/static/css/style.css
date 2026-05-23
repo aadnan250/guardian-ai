@@ -235,6 +235,26 @@ button[type="submit"] {
     padding: 11px 16px;
 }
 
+.secondary-link,
+.secondary-button {
+    background: #e6f3f1;
+    border: 1px solid #b7d8d2;
+    border-radius: 6px;
+    color: var(--brand-dark);
+    cursor: pointer;
+    display: inline-block;
+    font: inherit;
+    font-weight: 800;
+    padding: 10px 15px;
+}
+
+.action-row,
+.demo-controls {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+
 .auth-page {
     background: #e9eff2;
 }
@@ -299,6 +319,417 @@ form button[type="submit"] {
     white-space: pre-wrap;
 }
 
+.demo-body {
+    background: #071018;
+    color: #e5eef7;
+    min-height: 100vh;
+}
+
+.demo-topbar {
+    background: #0b1720;
+    border-color: #1f3442;
+}
+
+.demo-topbar .brand,
+.demo-topbar a,
+.demo-topbar .link-button {
+    color: #e5eef7;
+}
+
+.demo-page {
+    margin: 0 auto;
+    max-width: 1280px;
+    padding: 28px;
+}
+
+.demo-hero {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    margin-bottom: 20px;
+}
+
+.demo-hero h1 {
+    font-size: 2.4rem;
+    line-height: 1.1;
+    margin: 0;
+}
+
+.demo-hero .muted {
+    color: #9fb2c4;
+}
+
+.demo-hero button,
+.demo-controls button {
+    border-radius: 6px;
+    border: 0;
+    cursor: pointer;
+    font-weight: 900;
+    padding: 12px 16px;
+}
+
+#startDemo {
+    background: #14b8a6;
+    color: #031110;
+}
+
+#startDemo:disabled {
+    cursor: wait;
+    opacity: .74;
+}
+
+#audioToggle {
+    background: #132634;
+    border: 1px solid #28465a;
+    color: #dbeafe;
+}
+
+.arena-grid {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: minmax(0, 1.8fr) minmax(320px, .8fr);
+}
+
+.demo-columns {
+    display: grid;
+    gap: 18px;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 18px;
+}
+
+.arena-panel {
+    background: linear-gradient(180deg, #0e1b26, #09141e);
+    border: 1px solid #244054;
+    border-radius: 8px;
+    box-shadow: 0 20px 70px rgba(0, 0, 0, .22);
+    overflow: hidden;
+    padding: 20px;
+}
+
+.battlefield {
+    min-height: 560px;
+    position: relative;
+}
+
+.battle-header {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+    position: relative;
+    z-index: 2;
+}
+
+.battle-header div {
+    align-items: center;
+    display: flex;
+    gap: 10px;
+}
+
+.status-dot {
+    animation: statusPulse 1.5s infinite;
+    background: #22c55e;
+    border-radius: 50%;
+    box-shadow: 0 0 20px #22c55e;
+    display: inline-block;
+    height: 11px;
+    width: 11px;
+}
+
+.battlefield-map {
+    align-items: center;
+    display: grid;
+    gap: 20px;
+    grid-template-columns: 1fr 1.1fr 1fr;
+    min-height: 360px;
+    position: relative;
+}
+
+.internet-zone,
+.asset-zone {
+    color: #9fb2c4;
+    display: grid;
+    gap: 14px;
+    position: relative;
+    z-index: 2;
+}
+
+.internet-zone span,
+.asset-zone span {
+    font-size: .78rem;
+    font-weight: 800;
+    text-transform: uppercase;
+}
+
+.threat-orbit {
+    animation: threatFloat 3s ease-in-out infinite;
+    filter: drop-shadow(0 0 18px rgba(248, 113, 113, .5));
+    height: 76px;
+    width: 76px;
+}
+
+.orbit-b {
+    animation-delay: .5s;
+    margin-left: 70px;
+}
+
+.orbit-c {
+    animation-delay: 1s;
+    margin-left: 20px;
+}
+
+.shield-core {
+    align-items: center;
+    display: grid;
+    height: 260px;
+    justify-items: center;
+    position: relative;
+    z-index: 3;
+}
+
+.shield-ring {
+    animation: shieldPulse 2.2s ease-in-out infinite;
+    border: 4px solid #14b8a6;
+    border-radius: 50%;
+    box-shadow: 0 0 40px rgba(20, 184, 166, .45), inset 0 0 40px rgba(20, 184, 166, .18);
+    height: 220px;
+    position: absolute;
+    width: 220px;
+}
+
+.defense-sweep {
+    animation: defenseSweep 3s linear infinite;
+    background: linear-gradient(90deg, transparent, rgba(45, 212, 191, .4), transparent);
+    height: 240px;
+    position: absolute;
+    transform-origin: center;
+    width: 18px;
+}
+
+.shield-center {
+    align-items: center;
+    background: #0b1720;
+    border: 1px solid #2dd4bf;
+    border-radius: 50%;
+    box-shadow: 0 0 30px rgba(45, 212, 191, .35);
+    display: grid;
+    height: 145px;
+    justify-items: center;
+    padding: 20px;
+    text-align: center;
+    width: 145px;
+    z-index: 2;
+}
+
+.shield-center strong {
+    color: #ccfbf1;
+    font-size: 1.1rem;
+}
+
+.shield-center span {
+    color: #5eead4;
+    font-size: .86rem;
+}
+
+.asset-card {
+    background: #102333;
+    border: 1px solid #2a465b;
+    border-radius: 8px;
+    color: #dbeafe;
+    font-weight: 800;
+    padding: 16px;
+}
+
+.active-threat {
+    background: rgba(8, 18, 28, .86);
+    border: 1px solid #28465a;
+    border-radius: 8px;
+    margin-top: 12px;
+    min-height: 142px;
+    padding: 18px;
+    position: relative;
+    z-index: 4;
+}
+
+.active-threat h2 {
+    font-size: 1.45rem;
+    margin: 12px 0 8px;
+}
+
+.active-threat p {
+    color: #b9c7d5;
+    margin: 8px 0;
+}
+
+.attack-lanes {
+    inset: 70px 190px 190px 190px;
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+}
+
+.attack-beam {
+    animation: attackBeam 2s linear infinite;
+    background: linear-gradient(90deg, transparent, rgba(239, 68, 68, .85), transparent);
+    height: 3px;
+    left: 0;
+    position: absolute;
+    top: 50%;
+    transform-origin: left center;
+    width: 100%;
+}
+
+.beam-two {
+    animation-delay: .5s;
+    top: 35%;
+    transform: rotate(12deg);
+}
+
+.beam-three {
+    animation-delay: 1s;
+    top: 68%;
+    transform: rotate(-10deg);
+}
+
+.response-panel h2,
+.arena-panel h2 {
+    margin: 0 0 14px;
+}
+
+.console-screen {
+    background: #030712;
+    border: 1px solid #1f3442;
+    border-radius: 8px;
+    color: #86efac;
+    font: .88rem/1.5 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    height: 492px;
+    overflow: auto;
+    padding: 16px;
+}
+
+.console-screen p {
+    margin: 0 0 8px;
+}
+
+.threat-list {
+    display: grid;
+    gap: 10px;
+}
+
+.threat-card {
+    background: #0a1620;
+    border: 1px solid #25445a;
+    border-radius: 8px;
+    display: grid;
+    gap: 6px;
+    padding: 14px;
+}
+
+.threat-card small,
+.threat-card em {
+    color: #9fb2c4;
+}
+
+.containment-list {
+    display: grid;
+    gap: 12px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.containment-list li {
+    background: #0a1620;
+    border: 1px solid #25445a;
+    border-radius: 8px;
+    color: #c6d3df;
+    padding: 13px;
+}
+
+.containment-list li.complete {
+    border-color: #10b981;
+    color: #bbf7d0;
+}
+
+body.under-attack .demo-body,
+body.under-attack {
+    animation: redAlert 1.2s ease-in-out infinite;
+}
+
+body.under-attack .shield-ring {
+    border-color: #ef4444;
+    box-shadow: 0 0 55px rgba(239, 68, 68, .75), inset 0 0 40px rgba(239, 68, 68, .2);
+}
+
+body.under-attack .shield-center {
+    border-color: #f87171;
+}
+
+@keyframes threatFloat {
+    0%,
+    100% {
+        transform: translateY(0) rotate(-2deg);
+    }
+    50% {
+        transform: translateY(-14px) rotate(3deg);
+    }
+}
+
+@keyframes shieldPulse {
+    0%,
+    100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.06);
+    }
+}
+
+@keyframes defenseSweep {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes statusPulse {
+    0%,
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: .55;
+        transform: scale(1.5);
+    }
+}
+
+@keyframes attackBeam {
+    from {
+        opacity: 0;
+        transform: translateX(-28%) scaleX(.2);
+    }
+    50% {
+        opacity: 1;
+    }
+    to {
+        opacity: 0;
+        transform: translateX(26%) scaleX(1);
+    }
+}
+
+@keyframes redAlert {
+    0%,
+    100% {
+        background: #071018;
+    }
+    50% {
+        background: #19080b;
+    }
+}
+
 @media (max-width: 820px) {
     .topbar,
     .page-header {
@@ -312,7 +743,25 @@ form button[type="submit"] {
 
     .metric-grid,
     .detail-grid,
-    .content-grid {
+    .content-grid,
+    .arena-grid,
+    .demo-columns,
+    .battlefield-map {
         grid-template-columns: 1fr;
+    }
+
+    .demo-hero,
+    .action-row,
+    .demo-controls {
+        align-items: stretch;
+        flex-direction: column;
+    }
+
+    .battlefield {
+        min-height: auto;
+    }
+
+    .console-screen {
+        height: 320px;
     }
 }

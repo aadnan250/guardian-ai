@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" role="img" aria-label="Ransomware threat icon">
+  <rect width="160" height="160" rx="26" fill="#160f1f"/>
+  <path d="M45 72V55c0-20 14-35 35-35s35 15 35 35v17h-17V55c0-10-7-18-18-18s-18 8-18 18v17Z" fill="#7c3aed"/>
+  <rect x="34" y="68" width="92" height="70" rx="15" fill="#dc2626"/>
+  <circle cx="80" cy="99" r="13" fill="#fef2f2"/>
+  <path d="M80 108v17" stroke="#fef2f2" stroke-width="8" stroke-linecap="round"/>
+  <path d="M29 45l-13-14M131 45l13-14M24 118l-15 10M136 118l15 10" stroke="#f87171" stroke-width="8" stroke-linecap="round"/>
+</svg>
