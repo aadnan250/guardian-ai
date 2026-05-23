@@ -20,6 +20,7 @@ services:
       DB_URL: jdbc:postgresql://postgres:5432/guardian_ai
       DB_USERNAME: postgres
       DB_PASSWORD: postgres
+      DB_DRIVER: org.postgresql.Driver
       AI_PROVIDER: local
       AI_API_KEY: ${AI_API_KEY:-}
       AI_ENDPOINT: ${AI_ENDPOINT:-https://api.example.com/v1/chat/completions}

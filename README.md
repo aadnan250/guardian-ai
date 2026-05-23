@@ -55,27 +55,28 @@ src/main/java/com/adnan/guardianai
 ## How To Run
 
 1. Install Java 17+ and Maven, or open the project in IntelliJ IDEA with a Java 17+ SDK.
-2. Start PostgreSQL and create a database:
+2. Run `GuardianAiApplication` from IntelliJ.
+3. Open `http://localhost:8080`.
+4. Register, sign in, and upload a file from `sample-logs/`.
+
+The default local setup uses an embedded development database stored in `data/guardian_ai`, so the app can run immediately while you build and demo it.
+
+## PostgreSQL Setup
+
+For the full portfolio database setup, start PostgreSQL and create a database:
 
 ```sql
 CREATE DATABASE guardian_ai;
 ```
 
-3. Configure credentials with environment variables or edit `src/main/resources/application.properties`:
+Then configure credentials with environment variables:
 
 ```properties
 DB_URL=jdbc:postgresql://localhost:5432/guardian_ai
 DB_USERNAME=postgres
 DB_PASSWORD=postgres
+DB_DRIVER=org.postgresql.Driver
 ```
-
-4. Run the app:
-
-```bash
-mvn spring-boot:run
-```
-
-5. Open `http://localhost:8080`, register, sign in, and upload a file from `sample-logs/`.
 
 ## Docker
 
