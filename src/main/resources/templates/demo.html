@@ -24,12 +24,31 @@
     <section class="demo-hero">
         <div>
             <p class="eyebrow">Live defense simulation</p>
-            <h1>GuardianAI Threat Arena</h1>
-            <p class="muted">A safe visual demo of simulated cyberattacks being detected, scored, contained, and reported.</p>
+            <h1>GuardianAI Breach Response Simulator</h1>
+            <p class="muted">A safe, cinematic SOC demo of an AI security system detecting, analyzing, and containing a simulated enterprise cyberattack.</p>
         </div>
         <div class="demo-controls">
             <button id="startDemo" type="button">Start Simulation</button>
             <button id="audioToggle" class="secondary-button" type="button">Audio On</button>
+        </div>
+    </section>
+
+    <section class="breach-banner" id="breachBanner">
+        <div>
+            <span>Simulation Status</span>
+            <strong id="simulationStatus">STANDBY</strong>
+        </div>
+        <div>
+            <span>Threat Level</span>
+            <strong id="threatLevel">LOW</strong>
+        </div>
+        <div>
+            <span>AI Confidence</span>
+            <strong id="aiConfidence">0%</strong>
+        </div>
+        <div>
+            <span>Containment</span>
+            <strong id="containmentScore">0%</strong>
         </div>
     </section>
 
@@ -66,6 +85,16 @@
                 </div>
             </div>
 
+            <div class="world-map-panel">
+                <div class="map-grid"></div>
+                <span class="map-origin origin-one">203.0.113.77</span>
+                <span class="map-origin origin-two">198.51.100.24</span>
+                <span class="map-origin origin-three">192.0.2.91</span>
+                <span class="map-pulse map-pulse-a"></span>
+                <span class="map-pulse map-pulse-b"></span>
+                <span class="map-pulse map-pulse-c"></span>
+            </div>
+
             <div id="activeThreat" class="active-threat">
                 <span class="badge critical">Simulation Ready</span>
                 <h2>Waiting for attack traffic</h2>
@@ -89,6 +118,21 @@
         </aside>
     </section>
 
+    <section class="terminal-grid">
+        <article class="terminal-panel">
+            <header><span></span>System Telemetry</header>
+            <div class="terminal-stream" id="systemStream"></div>
+        </article>
+        <article class="terminal-panel">
+            <header><span></span>Memory Analysis</header>
+            <div class="terminal-stream" id="memoryStream"></div>
+        </article>
+        <article class="terminal-panel">
+            <header><span></span>Network Inspection</header>
+            <div class="terminal-stream" id="networkStream"></div>
+        </article>
+    </section>
+
     <section class="demo-columns">
         <article class="arena-panel">
             <h2>Threat Queue</h2>
@@ -104,6 +148,29 @@
                 <li>Ready to generate incident report</li>
             </ul>
         </article>
+
+        <article class="arena-panel">
+            <h2>Process Monitor</h2>
+            <div class="process-table" id="processTable">
+                <div><span>svchost.exe</span><strong>Normal</strong></div>
+                <div><span>runtime_service.exe</span><strong>Watching</strong></div>
+                <div><span>system32.dll</span><strong>Verified</strong></div>
+                <div><span>unknown_process.tmp</span><strong class="danger-text">Suspicious</strong></div>
+            </div>
+        </article>
+    </section>
+
+    <section class="final-overlay" id="finalOverlay" aria-live="polite">
+        <div>
+            <p>GuardianAI</p>
+            <h2>SYSTEM SECURE</h2>
+            <span>Simulation Complete</span>
+            <dl>
+                <div><dt>AI Response Time</dt><dd>2.4s</dd></div>
+                <div><dt>Threats Neutralized</dt><dd>14</dd></div>
+                <div><dt>Containment Success</dt><dd>98%</dd></div>
+            </dl>
+        </div>
     </section>
 </main>
 

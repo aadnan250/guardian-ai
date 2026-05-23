@@ -20,6 +20,7 @@ This project is built for educational and defensive portfolio use. It analyzes s
 - Thymeleaf SOC dashboard
 - Downloadable text incident reports
 - Sample logs for quick demos
+- Cinematic live defense simulation for safe portfolio demonstrations
 
 ## Tech Stack
 
@@ -138,6 +139,8 @@ Expected output:
 ## Demo
 
 Use [docs/demo-script.md](docs/demo-script.md) to record a short walkthrough for GitHub or LinkedIn.
+
+The visual demo is available at `/demo` after signing in. It simulates malware-like behavior, spoofing, phishing callbacks, credential attacks, and AI containment using fake telemetry only. It does not scan the host computer, modify files, execute malware, or perform network attacks.
 
 ## Future Improvements
 
