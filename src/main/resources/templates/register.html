@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register | GuardianAI</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body class="auth-page">
+<main class="auth-shell">
+    <section class="auth-panel">
+        <p class="eyebrow">GuardianAI</p>
+        <h1>Create account</h1>
+        <p class="muted">Start analyzing simulated cybersecurity logs safely.</p>
+
+        <div class="alert" th:if="${error}" th:text="${error}"></div>
+
+        <form th:action="@{/register}" th:object="${registerRequest}" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+            <label for="username">Username</label>
+            <input id="username" th:field="*{username}" required>
+
+            <label for="email">Email</label>
+            <input id="email" th:field="*{email}" type="email" required>
+
+            <label for="password">Password</label>
+            <input id="password" th:field="*{password}" type="password" minlength="8" required>
+
+            <label for="confirmPassword">Confirm Password</label>
+            <input id="confirmPassword" th:field="*{confirmPassword}" type="password" required>
+
+            <button type="submit">Register</button>
+        </form>
+        <p class="switch-link">Already registered? <a th:href="@{/login}">Sign in</a></p>
+    </section>
+</main>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | GuardianAI</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="topbar">
+    <a class="brand" th:href="@{/dashboard}">GuardianAI</a>
+    <nav>
+        <a th:href="@{/dashboard}">Dashboard</a>
+        <a th:href="@{/logs/upload}">Upload Logs</a>
+        <form th:action="@{/logout}" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+            <button class="link-button" type="submit">Logout</button>
+        </form>
+    </nav>
+</header>
+
+<main class="page">
+    <section class="page-header">
+        <div>
+            <p class="eyebrow">SOC overview</p>
+            <h1>Security incidents</h1>
+        </div>
+        <a class="primary-link" th:href="@{/logs/upload}">Analyze logs</a>
+    </section>
+
+    <section class="metric-grid">
+        <article class="metric"><span>Total</span><strong th:text="${totalIncidents}">0</strong></article>
+        <article class="metric critical"><span>Critical</span><strong th:text="${criticalIncidents}">0</strong></article>
+        <article class="metric high"><span>High</span><strong th:text="${highIncidents}">0</strong></article>
+        <article class="metric medium"><span>Medium</span><strong th:text="${mediumIncidents}">0</strong></article>
+        <article class="metric low"><span>Low</span><strong th:text="${lowIncidents}">0</strong></article>
+    </section>
+
+    <section class="content-grid">
+        <article class="panel wide">
+            <h2>Recent Threats</h2>
+            <div class="table-wrap">
+                <table>
+                    <thead>
+                    <tr>
+                        <th>Threat Type</th>
+                        <th>Severity</th>
+                        <th>IP Address</th>
+                        <th>Username</th>
+                        <th>Detected At</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="incident : ${recentIncidents}">
+                        <td><a th:href="@{/incidents/{id}(id=${incident.id})}" th:text="${incident.threatType}">Threat</a></td>
+                        <td><span class="badge" th:classappend="${incident.severity.toLowerCase()}" th:text="${incident.severity}">High</span></td>
+                        <td th:text="${incident.ipAddress}">192.168.1.50</td>
+                        <td th:text="${incident.username}">admin</td>
+                        <td th:text="${#temporals.format(incident.detectedAt, 'yyyy-MM-dd HH:mm')}">2026-05-23</td>
+                    </tr>
+                    <tr th:if="${#lists.isEmpty(recentIncidents)}">
+                        <td colspan="5" class="empty">No incidents yet. Upload a sample log to begin.</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </article>
+
+        <article class="panel">
+            <h2>Recent Uploads</h2>
+            <ul class="upload-list">
+                <li th:each="upload : ${recentUploads}">
+                    <span th:text="${upload.fileName}">sample.log</span>
+                    <small th:text="${#temporals.format(upload.uploadTime, 'yyyy-MM-dd HH:mm')}">time</small>
+                </li>
+                <li th:if="${#lists.isEmpty(recentUploads)}" class="empty">No uploads yet.</li>
+            </ul>
+        </article>
+    </section>
+</main>
+<script th:src="@{/js/dashboard.js}"></script>
+</body>
+</html>

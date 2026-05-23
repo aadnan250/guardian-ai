@@ -1,0 +1,8 @@
+target/
+.idea/
+*.iml
+.env
+*.log
+!sample-logs/*.log
+uploads/
+hs_err_pid*
