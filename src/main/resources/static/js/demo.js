@@ -96,6 +96,8 @@ const aiFightBar = document.querySelector("#aiFightBar");
 const fightPercent = document.querySelector("#fightPercent");
 const fightFill = document.querySelector("#fightFill");
 const fightStatus = document.querySelector("#fightStatus");
+const intrusionScreen = document.querySelector("#intrusionScreen");
+const intrusionCode = document.querySelector("#intrusionCode");
 const streams = [
     document.querySelector("#systemStream"),
     document.querySelector("#memoryStream"),
@@ -140,6 +142,22 @@ const logFragments = {
     ]
 };
 
+const fakeCodeLines = [
+    "nblocks = (gidsetsize + NGROUPS_PER_BLOCK - 1) / NGROUPS_PER_BLOCK;",
+    "/* simulated pointer allocation check */",
+    "group_info = kmalloc(sizeof(*group_info) + nblocks*sizeof(gid_t *), GFP_USER);",
+    "if (!group_info) return NULL;",
+    "atomic_set(&group_info->usage, 1);",
+    "for (i = 0; i < nblocks; i++) {",
+    "    gid_t *b = (void *)__get_free_page(GFP_USER);",
+    "    if (!b) goto out_undo_partial_alloc;",
+    "}",
+    "[AI] kernel anomaly score recalculated: 94%",
+    "[THREAT] polymorphic behavior observed in simulated memory region",
+    "[DEFENSE] access gate hardened; execution denied",
+    "[SCAN] synthetic payload blocked before file interaction"
+];
+
 function severityClass(severity) {
     return severity.toLowerCase();
 }
@@ -175,6 +193,20 @@ function writeTerminal(stream, text) {
     stream.scrollTop = stream.scrollHeight;
 }
 
+function renderIntrusionCode(threat) {
+    intrusionScreen.classList.add("visible");
+    const shuffled = fakeCodeLines
+        .slice()
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 10);
+    intrusionCode.textContent = shuffled.join("\n");
+    if (threat.level === "SEVERE" || threat.level === "CRITICAL") {
+        intrusionScreen.classList.add("denied-pulse");
+    } else {
+        intrusionScreen.classList.remove("denied-pulse");
+    }
+}
+
 function startTerminalChaos() {
     stopTerminalChaos();
     streamTimer = setInterval(() => {
@@ -199,6 +231,7 @@ function setStage(threat) {
     streamDelay = threat.level === "SEVERE" ? 45 : threat.level === "CRITICAL" ? 70 : threat.level === "HIGH" ? 110 : 160;
     startTerminalChaos();
     updateFightBar(threat.containment, `Countering ${threat.name}`);
+    renderIntrusionCode(threat);
 }
 
 function renderThreatCard(threat, status) {
@@ -360,6 +393,7 @@ startButton.addEventListener("click", () => {
     threatCounter.textContent = "0 threats contained";
     threatList.innerHTML = "";
     streams.forEach(stream => stream.innerHTML = "");
+    intrusionScreen.classList.remove("visible", "denied-pulse");
     responseConsole.innerHTML = "";
     startButton.disabled = true;
     startButton.textContent = "Simulation Running";

@@ -505,6 +505,72 @@ form button[type="submit"] {
     position: relative;
 }
 
+.intrusion-screen {
+    background: #020403;
+    border: 1px solid rgba(34, 197, 94, .32);
+    border-radius: 8px;
+    box-shadow: inset 0 0 45px rgba(34, 197, 94, .08), 0 0 35px rgba(0, 0, 0, .35);
+    display: none;
+    inset: 12px;
+    overflow: hidden;
+    padding: 24px;
+    position: absolute;
+    z-index: 4;
+}
+
+.intrusion-screen.visible {
+    animation: intrusionFlicker 1.6s steps(2, end) infinite;
+    display: block;
+}
+
+.intrusion-screen pre {
+    color: #74ff75;
+    font: .85rem/1.65 ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    margin: 0;
+    max-width: 64%;
+    text-shadow: 0 0 10px rgba(116, 255, 117, .45);
+    white-space: pre-wrap;
+}
+
+.access-denied {
+    animation: deniedGlitch 1.2s linear infinite;
+    background: rgba(255, 42, 58, .92);
+    box-shadow: 0 0 38px rgba(255, 42, 58, .55);
+    color: rgba(140, 0, 14, .65);
+    font: 900 1.35rem ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    left: 50%;
+    letter-spacing: 0;
+    padding: 20px 72px;
+    position: absolute;
+    text-align: center;
+    text-transform: uppercase;
+    top: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.video-progress {
+    background: rgba(255, 255, 255, .32);
+    bottom: 18px;
+    height: 5px;
+    left: 24px;
+    position: absolute;
+    right: 24px;
+}
+
+.video-progress span {
+    animation: progressSweep 5.5s linear infinite;
+    background: #ff2a5b;
+    display: block;
+    height: 100%;
+    width: 18%;
+}
+
+.intrusion-screen.denied-pulse .access-denied {
+    animation-duration: .45s;
+    background: #ff303d;
+    color: rgba(90, 0, 8, .82);
+}
+
 .world-map-panel {
     background:
             radial-gradient(circle at 20% 40%, rgba(20, 184, 166, .18), transparent 18%),
@@ -1094,6 +1160,45 @@ body.under-attack .shield-center {
     }
     50% {
         background: #19080b;
+    }
+}
+
+@keyframes intrusionFlicker {
+    0%,
+    100% {
+        filter: brightness(1);
+        transform: translate(0, 0);
+    }
+    50% {
+        filter: brightness(1.25) contrast(1.1);
+        transform: translate(1px, 0);
+    }
+}
+
+@keyframes deniedGlitch {
+    0%,
+    100% {
+        opacity: .88;
+        transform: translate(-50%, -50%);
+    }
+    20% {
+        opacity: 1;
+        transform: translate(calc(-50% - 2px), calc(-50% + 1px));
+    }
+    40% {
+        transform: translate(calc(-50% + 2px), calc(-50% - 1px));
+    }
+    60% {
+        opacity: .74;
+    }
+}
+
+@keyframes progressSweep {
+    from {
+        width: 18%;
+    }
+    to {
+        width: 96%;
     }
 }
 
