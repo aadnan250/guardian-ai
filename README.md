@@ -15,6 +15,7 @@ This project is built for educational and defensive portfolio use. It analyzes s
 - Credential stuffing detection
 - Unusual login time detection
 - AI-generated or local defensive incident explanations
+- Safe static file scanner with SHA-256 hashing and suspicious indicator detection
 - Incident severity and confidence scoring
 - PostgreSQL incident storage
 - Thymeleaf SOC dashboard
@@ -135,6 +136,8 @@ Expected output:
 - `POST /api/ai/analyze`
 - `POST /api/ai/analyze/{incidentId}`
 - `GET /api/reports/{incidentId}`
+- `GET /scanner`
+- `POST /scanner`
 
 ## Demo
 

@@ -12,6 +12,7 @@
     <nav>
         <a th:href="@{/dashboard}">Dashboard</a>
         <a th:href="@{/logs/upload}">Upload Logs</a>
+        <a th:href="@{/scanner}">File Scanner</a>
         <a th:href="@{/demo}">Live Demo</a>
         <form th:action="@{/logout}" method="post">
             <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
@@ -28,6 +29,7 @@
         </div>
         <div class="action-row">
             <a class="secondary-link" th:href="@{/demo}">Run visual demo</a>
+            <a class="secondary-link" th:href="@{/scanner}">Scan file</a>
             <a class="primary-link" th:href="@{/logs/upload}">Analyze logs</a>
         </div>
     </section>

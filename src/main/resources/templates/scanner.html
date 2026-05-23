@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Scanner | GuardianAI</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+<header class="topbar">
+    <a class="brand" th:href="@{/dashboard}">GuardianAI</a>
+    <nav>
+        <a th:href="@{/dashboard}">Dashboard</a>
+        <a th:href="@{/logs/upload}">Upload Logs</a>
+        <a th:href="@{/scanner}">File Scanner</a>
+        <a th:href="@{/demo}">Live Demo</a>
+        <form th:action="@{/logout}" method="post">
+            <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+            <button class="link-button" type="submit">Logout</button>
+        </form>
+    </nav>
+</header>
+
+<main class="page">
+    <section class="page-header">
+        <div>
+            <p class="eyebrow">Static malware analysis</p>
+            <h1>Safe File Scanner</h1>
+            <p class="muted">Upload a file for defensive static analysis. GuardianAI computes a hash, checks safe indicators, and reports risk without modifying your computer.</p>
+        </div>
+    </section>
+
+    <section class="content-grid">
+        <article class="panel">
+            <h2>Scan File</h2>
+            <form th:action="@{/scanner}" method="post" enctype="multipart/form-data" class="upload-form">
+                <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+                <label for="file">File</label>
+                <input id="file" name="file" type="file" required>
+                <button type="submit">Scan File</button>
+            </form>
+        </article>
+
+        <article class="panel" th:if="${scanResult}">
+            <h2>Scan Result</h2>
+            <div class="scanner-result">
+                <span class="badge" th:classappend="${scanResult.severity.toLowerCase()}" th:text="${scanResult.severity}">Low</span>
+                <h3 th:text="${scanResult.verdict}">No Threat Detected</h3>
+                <p><strong>Risk Score:</strong> <span th:text="${scanResult.riskScore + '%'}">0%</span></p>
+                <p><strong>File:</strong> <span th:text="${scanResult.fileName}">file.txt</span></p>
+                <p><strong>SHA-256:</strong></p>
+                <code class="hash" th:text="${scanResult.sha256}">hash</code>
+                <pre class="analysis" th:text="${scanResult.findings}">Findings</pre>
+            </div>
+        </article>
+    </section>
+
+    <section class="panel wide recent-scans">
+        <h2>Recent Scans</h2>
+        <div class="table-wrap">
+            <table>
+                <thead>
+                <tr>
+                    <th>File</th>
+                    <th>Verdict</th>
+                    <th>Severity</th>
+                    <th>Risk</th>
+                    <th>Scanned At</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="scan : ${recentScans}">
+                    <td th:text="${scan.fileName}">file.txt</td>
+                    <td th:text="${scan.verdict}">No Threat Detected</td>
+                    <td><span class="badge" th:classappend="${scan.severity.toLowerCase()}" th:text="${scan.severity}">Low</span></td>
+                    <td th:text="${scan.riskScore + '%'}">0%</td>
+                    <td th:text="${#temporals.format(scan.scannedAt, 'yyyy-MM-dd HH:mm')}">time</td>
+                </tr>
+                <tr th:if="${#lists.isEmpty(recentScans)}">
+                    <td colspan="5" class="empty">No scans yet.</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+</main>
+</body>
+</html>
